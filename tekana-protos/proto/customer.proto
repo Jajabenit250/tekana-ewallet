@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package customer;
+
+service CustomerService {
+  rpc Register (RegisterRequest) returns (RegisterResponse) {}
+  rpc FindAll (RegCustomersRequest) returns (RegCustomersResponse) {}
+  rpc FindOne (RegCustomerRequest) returns (RegCustomerResponse) {}
+  rpc Login (LoginRequest) returns (LoginResponse) {}
+  rpc Validate (ValidateRequest) returns (ValidateResponse) {}
+}
+
+// Customer Register
+
+message RegisterRequest {
+  string email = 1;
+  string password = 2;
+  string fullName = 3;
+  string dateOfbirth = 4;
+  string gender = 5;
+}
+
+
+message RegisterResponse {
+  int32 status = 1;
+  repeated string error = 2;
+}
+
+// Customer Login
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  string token = 3;
+}
+
+// Get Customer By ID
+
+message CustomerData {
+  int32 id = 1; 
+  string email = 2;
+  string fullName = 3;
+  string dateOfbirth = 4;
+  string gender = 5;
+}
+
+message RegCustomerRequest {
+  int32 id = 1;
+}
+
+message RegCustomerResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  CustomerData data = 3;
+}
+
+// All Customers
+
+message RegCustomersRequest {
+  string token = 1;
+}
+
+message RegCustomersResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  repeated CustomerData data = 3;
+}
+
+// Validate
+
+message ValidateRequest {
+  string token = 1;
+}
+
+message ValidateResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  int32 customerId = 3;
+}

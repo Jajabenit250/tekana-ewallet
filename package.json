@@ -1,0 +1,18 @@
+{
+  "name": "tekana-ewallet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docs:proto-gen": "./scripts/generate-proto-docs.sh",
+    "install": "./scripts/install.sh",
+    "lint": "./scripts/lint.sh",
+    "build": "./scripts/build.sh",
+    "docker:build": "docker-compose build",
+    "docker:start": "docker-compose up",
+    "docker:teardown": "docker-compose down -v",
+    "start": "npm run install && npm run lint && npm run build && npm run docker:build && npm run docker:start"
+  },
+  "author": "Benit Havugimana",
+  "license": "ISC"
+}

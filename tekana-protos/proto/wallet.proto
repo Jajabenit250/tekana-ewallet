@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package wallet;
+
+service WalletService {
+  rpc CreateWallet (CreateWalletRequest) returns (CreateWalletResponse) {}
+  rpc DepositMoney (DepositMoneyRequest) returns (DepositMoneyResponse) {}
+  rpc WithdrawMoney (WithdrawMoneyRequest) returns (WithdrawMoneyResponse) {}
+  rpc FindOne (FindOneRequest) returns (FindOneResponse) {}
+  rpc CustomerWallets (CustomerWalletsRequest) returns (CustomerWalletsResponse) {}
+}
+
+// CreateWallet
+
+message CreateWalletRequest {
+  int32 customerId = 1;
+  string walletType = 2;
+}
+
+message CreateWalletResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  int32 id = 3;
+}
+
+// Add Money To the wallet
+
+message DepositMoneyRequest {
+  string accNumber = 1;
+  string amount = 2;
+}
+
+message DepositMoneyResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  int32 id = 3;
+}
+
+// FindOne by account number
+
+message WalletData {
+  int32 id = 1;
+  string accNumber = 2;
+  int32 customerId = 3;
+  string walletType = 4;
+  double balance = 5;
+}
+
+message FindOneRequest {
+  string accNumber = 1;
+}
+
+message FindOneResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  WalletData data = 3;
+}
+
+// Find Wallets by customerId
+message CustomerWalletsRequest {
+  int32 customerId = 1;
+}
+
+message CustomerWalletsResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  repeated WalletData data = 3;
+}
+
+
+// Remove Money From the wallet
+
+message WithdrawMoneyRequest {
+  string accNumber = 1;
+  string amount = 2;
+}
+
+message WithdrawMoneyResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  int32 id = 3;
+}

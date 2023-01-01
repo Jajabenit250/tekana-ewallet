@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package transaction;
+
+service TransactionService {
+  rpc CreateTransaction (CreateTransactionRequest) returns (CreateTransactionResponse) {}
+  rpc CustTransactions (CustTransactionsRequest) returns (CustTransactionsResponse) {}
+}
+
+
+
+message TransactionData {
+  string senderAcc = 1;
+  string receiverAcc = 2;
+  string amount = 3;
+  string status = 4;
+  string transactionDate = 5;
+}
+
+// Make Transaction
+
+message CreateTransactionRequest {
+  string senderAcc = 1;
+  string receiverAcc = 2;
+  string amount = 3;
+}
+
+message CreateTransactionResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  int32 id = 3;
+}
+
+// Get Transactions By CustomerId
+
+message CustTransactionsRequest {
+  int32 customerId = 1;
+}
+
+message CustTransactionsResponse {
+  int32 status = 1;
+  repeated string error = 2;
+  repeated TransactionData data = 3;
+}
