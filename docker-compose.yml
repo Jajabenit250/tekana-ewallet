@@ -9,52 +9,6 @@ services:
       - ./proto:/app
     working_dir: /app
 
-  wallets-svc:
-    image: "wallets-svc:dev"
-    build:
-      context: "./microservices/wallets-svc"
-    networks:
-      - "frontend"
-      - "backend"
-      - "walletsdomain"
-    expose:
-      - "50051"
-    depends_on:
-      - "wallets-db"
-    environment:
-      NODE_ENV: "test"
-      URL: "0.0.0.0"
-      PORT: "50051"
-      DB_NAME: "postgres"
-      DB_HOST: "wallets-db"
-      DB_PORT: "5432"
-      DB_customer: "postgres"
-      DB_PASSWORD: "postgres"
-    restart: "on-failure"
-
-  transactions-svc:
-    image: "transactions-svc:dev"
-    build:
-      context: "./microservices/transactions-svc"
-    networks:
-      - "frontend"
-      - "backend"
-      - "transactionsdomain"
-    expose:
-      - "50051"
-    depends_on:
-      - "transactions-db"
-    environment:
-      NODE_ENV: "test"
-      URL: "0.0.0.0"
-      PORT: "50051"
-      DB_NAME: "postgres"
-      DB_HOST: "transactions-db"
-      DB_PORT: "5432"
-      DB_customer: "postgres"
-      DB_PASSWORD: "postgres"
-    restart: "on-failure"
-
   customers-svc:
     image: "customers-svc:dev"
     build:
@@ -74,6 +28,52 @@ services:
       DB_NAME: "postgres"
       DB_HOST: "customers-db"
       DB_PORT: "5432"
+      DB_customer: "postgres"
+      DB_PASSWORD: "postgres"
+    restart: "on-failure"
+
+  wallets-svc:
+    image: "wallets-svc:dev"
+    build:
+      context: "./microservices/wallets-svc"
+    networks:
+      - "frontend"
+      - "backend"
+      - "walletsdomain"
+    expose:
+      - "50052"
+    depends_on:
+      - "wallets-db"
+    environment:
+      NODE_ENV: "test"
+      URL: "0.0.0.0"
+      PORT: "50053"
+      DB_NAME: "postgres"
+      DB_HOST: "wallets-db"
+      DB_PORT: "5433"
+      DB_customer: "postgres"
+      DB_PASSWORD: "postgres"
+    restart: "on-failure"
+
+  transactions-svc:
+    image: "transactions-svc:dev"
+    build:
+      context: "./microservices/transactions-svc"
+    networks:
+      - "frontend"
+      - "backend"
+      - "transactionsdomain"
+    expose:
+      - "50053"
+    depends_on:
+      - "transactions-db"
+    environment:
+      NODE_ENV: "test"
+      URL: "0.0.0.0"
+      PORT: "50052"
+      DB_NAME: "postgres"
+      DB_HOST: "transactions-db"
+      DB_PORT: "5434"
       DB_customer: "postgres"
       DB_PASSWORD: "postgres"
     restart: "on-failure"
@@ -132,38 +132,6 @@ services:
       timeout: 10s
       retries: 5
 
-  wallets-db:
-    image: "postgres:12.1-alpine"
-    networks:
-      - "walletsdomain"
-    expose:
-      - "5432"
-    environment:
-      POSTGRES_customer: "postgres"
-      POSTGRES_PASSWORD: "postgres"
-    healthcheck:
-      test: [ "CMD-SHELL", "su -c 'pg_isready -U postgres' postgres" ]
-      interval: 30s
-      timeout: 30s
-      retries: 3
-    restart: "on-failure"
-
-  transactions-db:
-    image: "postgres:12.1-alpine"
-    networks:
-      - "transactionsdomain"
-    expose:
-      - "5432"
-    environment:
-      POSTGRES_customer: "postgres"
-      POSTGRES_PASSWORD: "postgres"
-    healthcheck:
-      test: [ "CMD-SHELL", "su -c 'pg_isready -U postgres' postgres" ]
-      interval: 30s
-      timeout: 30s
-      retries: 3
-    restart: "on-failure"
-
   customers-db:
     image: "postgres:12.1-alpine"
     networks:
@@ -180,9 +148,41 @@ services:
       retries: 3
     restart: "on-failure"
 
+  wallets-db:
+    image: "postgres:12.1-alpine"
+    networks:
+      - "walletsdomain"
+    expose:
+      - "5433"
+    environment:
+      POSTGRES_customer: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    healthcheck:
+      test: [ "CMD-SHELL", "su -c 'pg_isready -U postgres' postgres" ]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    restart: "on-failure"
+
+  transactions-db:
+    image: "postgres:12.1-alpine"
+    networks:
+      - "transactionsdomain"
+    expose:
+      - "5434"
+    environment:
+      POSTGRES_customer: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    healthcheck:
+      test: [ "CMD-SHELL", "su -c 'pg_isready -U postgres' postgres" ]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    restart: "on-failure"
+
 networks:
   frontend:
   backend:
+  customersdomain:
   walletsdomain:
   transactionsdomain:
-  customersdomain:
