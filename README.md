@@ -50,7 +50,9 @@ I considered only APIs that handle Customer, Wallet, and Transactions Operations
 1. business requirements
 2. Tech Stack
 3. System architecture
-![My First Board (2)](https://user-images.githubusercontent.com/51251401/210184909-df8b6f82-4f0f-489f-a95d-3b9deed40d8c.jpg)
+
+sample architecture considering the changes
+![My First Board (3)](https://user-images.githubusercontent.com/51251401/210193514-c62bda1e-053b-49dc-9642-5f7d50755875.jpg)
 
     - Load balancers: To handle the high volume of requests and traffic, the system should use load balancers to distribute requests across multiple servers. This can help ensure that the system remains responsive and can scale horizontally as needed.
 
