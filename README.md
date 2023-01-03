@@ -47,11 +47,11 @@ This will involve the following activities:
 This Changes are only for demostration of what will happens while rebuilding the backend.
 I considered only APIs that handle Customer, Wallet, and Transactions Operations
 
-1. business requirements
+### Business Requirements
 
     Code source: Write the back-end solution with a minimum feature that showcases how you would design from the code source.
 
-    These are the required features to be built:
+   1. These are the required features to be built:
 
     - Create, Read customers (Registration)
 
@@ -59,28 +59,31 @@ I considered only APIs that handle Customer, Wallet, and Transactions Operations
 
     - Create and read transactions.
 
-2. Tech Stack
+### Tech Stack
 
-    - API Layer
+1. API Layer
 
     [NestJS + Express](https://nestjs.com/) acts as the API Layer for the architecture. It takes care of listening for client requests and calling the appropriate back-end microservice to fulfill them.
 
-    - Microservice Layer
+2. Microservice Layer
 
     [gRPC](https://grpc.io/) was chosen as the framework to do the microservices. [Protocol buffers](https://developers.google.com/protocol-buffers/) was used as the data interchange format between the client (REST API) and the server (gRPC microservices). NestJS is still the framework used to create the gRPC Microservices.
 
-    - Persistence Layer
+3. Persistence Layer
 
     PostgreSQL is used as the database and TypeORM is used as the Object-Relational Mapper (ORM).
 
-    - Deployment
+4. Deployment
 
     Deployment is done with containers in mind. A Docker Compose file along with Dockerfiles for each project are given to run the whole thing on any machine. For production, it's always recommended to use [Kubernetes](https://kubernetes.io/) for these kinds of microservices architecture to deploy in production.
 
-3. System architecture
+### System architecture
 
     sample architecture considering the changes
+
     ![My First Board (3)](https://user-images.githubusercontent.com/51251401/210193514-c62bda1e-053b-49dc-9642-5f7d50755875.jpg)
+
+1. A Bit about the Architecture
 
     - Load balancers: To handle the high volume of requests and traffic, the system should use load balancers to distribute requests across multiple servers. This can help ensure that the system remains responsive and can scale horizontally as needed.
 
@@ -96,9 +99,9 @@ I considered only APIs that handle Customer, Wallet, and Transactions Operations
 
     - Deployment and infrastructure: To ensure that the system is highly available and can scale as needed, the system should be deployed in the cloud using infrastructure-as-code practices. This could include tools such as Kubernetes.
 
-4. back-end solution
+### Back-end Solution
 
-    This architecture implements the following Microservice Design Patterns:
+1. This architecture implements the following Microservice Design Patterns:
 
     1. [Microservice Architecture](https://microservices.io/patterns/microservices.html)
     2. [Subdomain Decomposition](https://microservices.io/patterns/decomposition/decompose-by-subdomain.html)
@@ -107,11 +110,11 @@ I considered only APIs that handle Customer, Wallet, and Transactions Operations
     5. [API Gateway](https://microservices.io/patterns/apigateway.html)
     6. [Database per Service](https://microservices.io/patterns/data/database-per-service.html)
 
-    Database Design
+2. Database Design
 
-    API EndPoints
+3. API EndPoints
 
-5. Integrate with the front-end and other components
+### Integrate with the front-end and other components
 
     For Sake Of Demo Swagger UI is used to test and run APIs
 
