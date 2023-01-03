@@ -71,11 +71,11 @@ I considered only APIs that handle Customer, Wallet, and Transactions Operations
 
     - Persistence Layer
 
-    PostgreSQL is used as the database and Sequelize is used as the Object-Relational Mapper (ORM).
+    PostgreSQL is used as the database and TypeORM is used as the Object-Relational Mapper (ORM).
 
     - Deployment
 
-    Deployment is done with containers in mind. A Docker Compose file along with Dockerfiles for each project are given to run the whole thing on any machine. For production, it's always recommended to use [Kubernetes](https://kubernetes.io/) for these kinds of microservices architecture to deploy in production. [Istio](https://istio.io/) takes care of service discovery, distributed tracing and other observability requirements.
+    Deployment is done with containers in mind. A Docker Compose file along with Dockerfiles for each project are given to run the whole thing on any machine. For production, it's always recommended to use [Kubernetes](https://kubernetes.io/) for these kinds of microservices architecture to deploy in production.
 
 3. System architecture
 
