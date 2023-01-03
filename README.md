@@ -49,9 +49,9 @@ I considered only APIs that handle Customer, Wallet, and Transactions Operations
 
 ### Business Requirements
 
-    Code source: Write the back-end solution with a minimum feature that showcases how you would design from the code source.
+Code source: Write the back-end solution with a minimum feature that showcases how you would design from the code source.
 
-   1. These are the required features to be built:
+1. These are the required features to be built:
 
     - Create, Read customers (Registration)
 
@@ -79,11 +79,11 @@ I considered only APIs that handle Customer, Wallet, and Transactions Operations
 
 ### System architecture
 
-    sample architecture considering the changes
+sample architecture considering the changes
 
-    ![My First Board (3)](https://user-images.githubusercontent.com/51251401/210193514-c62bda1e-053b-49dc-9642-5f7d50755875.jpg)
+![My First Board (3)](https://user-images.githubusercontent.com/51251401/210193514-c62bda1e-053b-49dc-9642-5f7d50755875.jpg)
 
-1. A Bit about the Architecture
+1. Details
 
     - Load balancers: To handle the high volume of requests and traffic, the system should use load balancers to distribute requests across multiple servers. This can help ensure that the system remains responsive and can scale horizontally as needed.
 
