@@ -48,6 +48,7 @@ This Changes are only for demostration of what will happens while rebuilding the
 I considered only APIs that handle Customer, Wallet, and Transactions Operations
 
 1. business requirements
+
     Code source: Write the back-end solution with a minimum feature that showcases how you would design from the code source.
 
     These are the required features to be built:
@@ -60,19 +61,19 @@ I considered only APIs that handle Customer, Wallet, and Transactions Operations
 
 2. Tech Stack
 
-### API Layer
+    - API Layer
 
     [NestJS + Express](https://nestjs.com/) acts as the API Layer for the architecture. It takes care of listening for client requests and calling the appropriate back-end microservice to fulfill them.
 
-### Microservice Layer
+    - Microservice Layer
 
     [gRPC](https://grpc.io/) was chosen as the framework to do the microservices. [Protocol buffers](https://developers.google.com/protocol-buffers/) was used as the data interchange format between the client (REST API) and the server (gRPC microservices). NestJS is still the framework used to create the gRPC Microservices.
 
-### Persistence Layer
+    - Persistence Layer
 
     PostgreSQL is used as the database and Sequelize is used as the Object-Relational Mapper (ORM).
 
-### Deployment
+    - Deployment
 
     Deployment is done with containers in mind. A Docker Compose file along with Dockerfiles for each project are given to run the whole thing on any machine. For production, it's always recommended to use [Kubernetes](https://kubernetes.io/) for these kinds of microservices architecture to deploy in production. [Istio](https://istio.io/) takes care of service discovery, distributed tracing and other observability requirements.
 
@@ -138,7 +139,7 @@ I considered only APIs that handle Customer, Wallet, and Transactions Operations
 
 1. System Requirements - must be Linux/Mac
 
-- [Node.js](https://nodejs.org/en/) - v12 Recommended
+- [Node.js](https://nodejs.org/en/) - v14 Recommended
 - [Docker](https://docs.docker.com/install/) - latest
 - [Docker Compose](https://docs.docker.com/compose/install/) - latest
 
