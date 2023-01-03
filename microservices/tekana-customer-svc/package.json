@@ -23,6 +23,7 @@
     "proto:customer": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/tekana-protos/proto --ts_proto_out=src/customer/ node_modules/tekana-protos/proto/customer.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.8.0",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/jwt": "^10.0.1",

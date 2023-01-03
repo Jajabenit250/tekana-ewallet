@@ -47,7 +47,7 @@ services:
     environment:
       NODE_ENV: "test"
       URL: "0.0.0.0"
-      PORT: "50053"
+      PORT: "50052"
       DB_NAME: "postgres"
       DB_HOST: "wallets-db"
       DB_PORT: "5433"
@@ -70,7 +70,7 @@ services:
     environment:
       NODE_ENV: "test"
       URL: "0.0.0.0"
-      PORT: "50052"
+      PORT: "50053"
       DB_NAME: "postgres"
       DB_HOST: "transactions-db"
       DB_PORT: "5434"

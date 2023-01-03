@@ -27,13 +27,13 @@ message CreateWalletResponse {
 
 message DepositMoneyRequest {
   string accNumber = 1;
-  string amount = 2;
+  double amount = 2;
+  int32 transactionId = 3;
 }
 
 message DepositMoneyResponse {
   int32 status = 1;
   repeated string error = 2;
-  int32 id = 3;
 }
 
 // FindOne by account number
@@ -72,11 +72,11 @@ message CustomerWalletsResponse {
 
 message WithdrawMoneyRequest {
   string accNumber = 1;
-  string amount = 2;
+  double amount = 2;
+  int32 transactionId = 3;
 }
 
 message WithdrawMoneyResponse {
   int32 status = 1;
   repeated string error = 2;
-  int32 id = 3;
 }

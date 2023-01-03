@@ -12,9 +12,9 @@ service TransactionService {
 message TransactionData {
   string senderAcc = 1;
   string receiverAcc = 2;
-  string amount = 3;
+  double amount = 3;
   string status = 4;
-  string transactionDate = 5;
+  string createdAt = 5;
 }
 
 // Make Transaction
@@ -22,7 +22,7 @@ message TransactionData {
 message CreateTransactionRequest {
   string senderAcc = 1;
   string receiverAcc = 2;
-  string amount = 3;
+  double amount = 3;
 }
 
 message CreateTransactionResponse {
