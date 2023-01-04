@@ -112,7 +112,8 @@ sample architecture considering the changes
 
 2. Database Design
 
-![tekana-model](https://user-images.githubusercontent.com/51251401/210472256-c5d761ce-7d4d-4671-bf16-b0e60ea543c7.png)
+![new design](https://user-images.githubusercontent.com/51251401/210474335-56ade410-2bc4-405c-8d88-d64f53d2ed75.png)
+
 
 
 3. API EndPoints
