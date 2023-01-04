@@ -112,6 +112,9 @@ sample architecture considering the changes
 
 2. Database Design
 
+![tekana-model](https://user-images.githubusercontent.com/51251401/210472256-c5d761ce-7d4d-4671-bf16-b0e60ea543c7.png)
+
+
 3. API EndPoints
 
 ### Integrate with the front-end and other components
