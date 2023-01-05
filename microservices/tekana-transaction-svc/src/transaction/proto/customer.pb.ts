@@ -8,7 +8,7 @@ export interface RegisterRequest {
   email: string;
   password: string;
   fullName: string;
-  dateOfbirth: string;
+  nationalId: string;
   gender: string;
 }
 
@@ -32,7 +32,7 @@ export interface CustomerData {
   id: number;
   email: string;
   fullName: string;
-  dateOfbirth: string;
+  nationalId: string;
   gender: string;
 }
 
@@ -47,7 +47,6 @@ export interface RegCustomerResponse {
 }
 
 export interface RegCustomersRequest {
-  token: string;
 }
 
 export interface RegCustomersResponse {
@@ -71,9 +70,9 @@ export const CUSTOMER_PACKAGE_NAME = "customer";
 export interface CustomerServiceClient {
   register(request: RegisterRequest): Observable<RegisterResponse>;
 
-  findAll(request: RegCustomersRequest): Observable<RegCustomersResponse>;
+  findAllCustomers(request: RegCustomersRequest): Observable<RegCustomersResponse>;
 
-  findOne(request: RegCustomerRequest): Observable<RegCustomerResponse>;
+  findOneCustomer(request: RegCustomerRequest): Observable<RegCustomerResponse>;
 
   login(request: LoginRequest): Observable<LoginResponse>;
 
@@ -83,11 +82,11 @@ export interface CustomerServiceClient {
 export interface CustomerServiceController {
   register(request: RegisterRequest): Promise<RegisterResponse> | Observable<RegisterResponse> | RegisterResponse;
 
-  findAll(
+  findAllCustomers(
     request: RegCustomersRequest,
   ): Promise<RegCustomersResponse> | Observable<RegCustomersResponse> | RegCustomersResponse;
 
-  findOne(
+  findOneCustomer(
     request: RegCustomerRequest,
   ): Promise<RegCustomerResponse> | Observable<RegCustomerResponse> | RegCustomerResponse;
 
@@ -98,7 +97,7 @@ export interface CustomerServiceController {
 
 export function CustomerServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["register", "findAll", "findOne", "login", "validate"];
+    const grpcMethods: string[] = ["register", "findAllCustomers", "findOneCustomer", "login", "validate"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("CustomerService", method)(constructor.prototype[method], method, descriptor);

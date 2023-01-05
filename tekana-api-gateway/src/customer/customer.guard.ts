@@ -38,6 +38,8 @@ export class CustomerGuard implements CanActivate {
 
         if (status !== HttpStatus.OK) {
             throw new UnauthorizedException();
-        } return true;
+        }
+
+        return true;
     }
 }

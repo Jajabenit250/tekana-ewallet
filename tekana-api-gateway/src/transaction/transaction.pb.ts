@@ -7,15 +7,15 @@ export const protobufPackage = "transaction";
 export interface TransactionData {
   senderAcc: string;
   receiverAcc: string;
-  amount: string;
+  amount: number;
   status: string;
-  transactionDate: string;
+  createdAt: string;
 }
 
 export interface CreateTransactionRequest {
   senderAcc: string;
   receiverAcc: string;
-  amount: string;
+  amount: number;
 }
 
 export interface CreateTransactionResponse {

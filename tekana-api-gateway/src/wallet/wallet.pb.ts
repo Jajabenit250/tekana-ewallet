@@ -17,13 +17,13 @@ export interface CreateWalletResponse {
 
 export interface DepositMoneyRequest {
   accNumber: string;
-  amount: string;
+  amount: number;
+  transactionId: number;
 }
 
 export interface DepositMoneyResponse {
   status: number;
   error: string[];
-  id: number;
 }
 
 export interface WalletData {
@@ -57,13 +57,13 @@ export interface CustomerWalletsResponse {
 
 export interface WithdrawMoneyRequest {
   accNumber: string;
-  amount: string;
+  amount: number;
+  transactionId: number;
 }
 
 export interface WithdrawMoneyResponse {
   status: number;
   error: string[];
-  id: number;
 }
 
 export const WALLET_PACKAGE_NAME = "wallet";

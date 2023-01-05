@@ -1,5 +1,11 @@
 import { IsEmail, IsString, MinLength } from 'class-validator';
-import { LoginRequest, RegisterRequest, ValidateRequest } from './customer.pb';
+import {
+    LoginRequest,
+    RegisterRequest,
+    ValidateRequest,
+    RegCustomersRequest,
+    RegCustomerRequest,
+} from './customer.pb';
 
 export class LoginRequestDto implements LoginRequest {
     @IsEmail()
@@ -10,9 +16,15 @@ export class LoginRequestDto implements LoginRequest {
 }
 
 export class RegisterRequestDto implements RegisterRequest {
-    fullName: string;
-    dateOfbirth: string;
-    gender: string;
+    @IsString()
+    public readonly fullName: string;
+
+    @IsString()
+    public readonly nationalId: string;
+
+    @IsString()
+    public readonly gender: 'M' | 'F' | null;
+
     @IsEmail()
     public readonly email: string;
 
@@ -24,4 +36,11 @@ export class RegisterRequestDto implements RegisterRequest {
 export class ValidateRequestDto implements ValidateRequest {
     @IsString()
     public readonly token: string;
+}
+
+export class RegCustomersRequestDto implements RegCustomersRequest { }
+
+export class RegCustomerRequestDto implements RegCustomerRequest {
+    @IsString()
+    public readonly id: number;
 }

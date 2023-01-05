@@ -8,26 +8,32 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 
-// redo for better 
+// redo for better
 @Entity()
 export class Customer extends BaseEntity {
     @PrimaryGeneratedColumn()
     public id!: number;
 
-    @Column({ type: 'varchar', unique: true })
+    @Column({ type: 'varchar', unique: true, length: 50 })
     public email!: string;
 
-    @Column({ type: 'varchar' })
-    public fullName: string;
+    @Column({ type: 'varchar', length: 50 })
+    public fullName!: string;
 
-    @Column({ type: 'varchar' })
-    public dateOfbirth: string;
+    @Column({ type: 'varchar', length: 50 })
+    public nationalId!: string;
 
-    @Column({ type: 'varchar' })
-    public gender: string;
+    @Column('enum', {
+        name: 'gender',
+        nullable: true,
+        enum: ['M', 'F'],
+        default: 'M',
+    })
+    public gender!: 'M' | 'F' | null;
+
 
     @Exclude()
-    @Column({ type: 'varchar' })
+    @Column({ type: 'varchar', length: 100 })
     public password!: string;
 
     @Column()

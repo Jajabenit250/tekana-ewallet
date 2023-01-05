@@ -40,9 +40,9 @@ export class Wallet extends BaseEntity {
     @Column('timestamp with time zone', { name: 'deleted_at', nullable: true })
     deletedAt: Date | null;
 
-    /* 
-    * Relation IDs
-    */
+    /*
+     * Relation IDs
+     */
 
     @Column({ type: 'integer' })
     public customerId!: number;

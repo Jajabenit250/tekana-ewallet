@@ -44,10 +44,7 @@ export class TransactionService implements OnModuleInit {
             this.walletSvc.findOne({ accNumber: data.receiverAcc }),
         );
 
-        if (
-            senderWallet.status >= HttpStatus.NOT_FOUND
-
-        ) {
+        if (senderWallet.status >= HttpStatus.NOT_FOUND) {
             return {
                 id: null,
                 error: ['Sender Wallet not found'],
@@ -59,8 +56,7 @@ export class TransactionService implements OnModuleInit {
                 error: ['Reciever Wallet not found'],
                 status: receiverWallet.status,
             };
-        }
-        else if (senderWallet.data.balance < data.amount) {
+        } else if (senderWallet.data.balance < data.amount) {
             return {
                 id: null,
                 error: ['No available funds to complete transaction'],
@@ -92,10 +88,7 @@ export class TransactionService implements OnModuleInit {
             }),
         );
 
-        if (
-            withdrawMoneyData.status === HttpStatus.CONFLICT
-
-        ) {
+        if (withdrawMoneyData.status === HttpStatus.CONFLICT) {
             // deleting transaction if decreaseStock fails
             await this.repository.softDelete(transaction.id);
 

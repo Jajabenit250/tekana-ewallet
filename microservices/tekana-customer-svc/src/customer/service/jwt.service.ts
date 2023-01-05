@@ -23,7 +23,7 @@ export class JwtService {
 
     // Get User by User ID we get from decode()
     public async validateUser(decoded: any): Promise<Customer> {
-        return this.repository.findOne(decoded.id);
+        return this.repository.findOneBy({ id: decoded.toString() });
     }
 
     // Generate JWT Token

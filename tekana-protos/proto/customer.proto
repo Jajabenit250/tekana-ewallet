@@ -4,8 +4,8 @@ package customer;
 
 service CustomerService {
   rpc Register (RegisterRequest) returns (RegisterResponse) {}
-  rpc FindAll (RegCustomersRequest) returns (RegCustomersResponse) {}
-  rpc FindOne (RegCustomerRequest) returns (RegCustomerResponse) {}
+  rpc FindAllCustomers (RegCustomersRequest) returns (RegCustomersResponse) {}
+  rpc FindOneCustomer (RegCustomerRequest) returns (RegCustomerResponse) {}
   rpc Login (LoginRequest) returns (LoginResponse) {}
   rpc Validate (ValidateRequest) returns (ValidateResponse) {}
 }
@@ -16,7 +16,7 @@ message RegisterRequest {
   string email = 1;
   string password = 2;
   string fullName = 3;
-  string dateOfbirth = 4;
+  string nationalId = 4;
   string gender = 5;
 }
 
@@ -45,7 +45,7 @@ message CustomerData {
   int32 id = 1; 
   string email = 2;
   string fullName = 3;
-  string dateOfbirth = 4;
+  string nationalId = 4;
   string gender = 5;
 }
 
@@ -62,7 +62,6 @@ message RegCustomerResponse {
 // All Customers
 
 message RegCustomersRequest {
-  string token = 1;
 }
 
 message RegCustomersResponse {
