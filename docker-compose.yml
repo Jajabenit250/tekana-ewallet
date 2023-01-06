@@ -4,7 +4,7 @@ services:
   generic:
     build:
       context: .docker
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     volumes:
       - ./proto:/app
     working_dir: /app
@@ -12,7 +12,7 @@ services:
   customers-svc:
     image: "customers-svc:dev"
     build:
-      context: "./microservices/customers-svc"
+      context: "./microservices/tekana-customer-svc"
     networks:
       - "frontend"
       - "backend"
@@ -35,7 +35,7 @@ services:
   wallets-svc:
     image: "wallets-svc:dev"
     build:
-      context: "./microservices/wallets-svc"
+      context: "./microservices/tekana-wallet-svc"
     networks:
       - "frontend"
       - "backend"
@@ -58,7 +58,7 @@ services:
   transactions-svc:
     image: "transactions-svc:dev"
     build:
-      context: "./microservices/transactions-svc"
+      context: "./microservices/tekana-transaction-svc"
     networks:
       - "frontend"
       - "backend"

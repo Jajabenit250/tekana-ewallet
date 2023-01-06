@@ -38,10 +38,8 @@ export class CustomerController {
     }
 
     @GrpcMethod(CUSTOMER_SERVICE_NAME, 'FindAllCustomers')
-    private findAllCustomers(
-        payload: RegCustomersRequestDto,
-    ): Promise<RegCustomersResponse> {
-        return this.service.findAllCustomers(payload);
+    private findAllCustomers(): Promise<RegCustomersResponse> {
+        return this.service.findAllCustomers();
     }
 
     @GrpcMethod(CUSTOMER_SERVICE_NAME, 'FindOneCustomer')

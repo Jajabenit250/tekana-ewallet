@@ -38,12 +38,19 @@ message DepositMoneyResponse {
 
 // FindOne by account number
 
+message WalletActivityLog {
+  int32 transactionId = 1;
+  string action = 2;
+  int32 amount = 3;
+}
+
 message WalletData {
   int32 id = 1;
   string accNumber = 2;
   int32 customerId = 3;
   string walletType = 4;
   double balance = 5;
+  repeated WalletActivityLog walletActivityLogs = 6;
 }
 
 message FindOneRequest {

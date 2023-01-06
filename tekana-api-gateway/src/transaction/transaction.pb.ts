@@ -9,7 +9,6 @@ export interface TransactionData {
   receiverAcc: string;
   amount: number;
   status: string;
-  createdAt: string;
 }
 
 export interface CreateTransactionRequest {
@@ -25,7 +24,7 @@ export interface CreateTransactionResponse {
 }
 
 export interface CustTransactionsRequest {
-  customerId: number;
+  accNumber: string;
 }
 
 export interface CustTransactionsResponse {

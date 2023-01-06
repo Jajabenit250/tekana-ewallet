@@ -41,8 +41,6 @@ export class CustomerService {
             return { status: HttpStatus.CONFLICT, error: ['E-Mail already exists'] };
         }
 
-        console.log('----');
-
         customer = new Customer();
 
         customer.email = email;
@@ -112,15 +110,13 @@ export class CustomerService {
                 customerId: null,
             };
         }
-
-        console.log(decoded.id);
         return { status: HttpStatus.OK, error: null, customerId: decoded.id };
     }
 
     public async findOneCustomer({
         id,
     }: RegCustomerRequestDto): Promise<RegCustomerResponse> {
-        console.log('jjjjj');
+
         const customer: Customer = await this.repository.findOne({
             where: { id },
         });
@@ -136,10 +132,7 @@ export class CustomerService {
         return { data: customer, error: null, status: HttpStatus.OK };
     }
 
-    public async findAllCustomers(
-        RegCustomersRequestDto,
-    ): Promise<RegCustomersResponse> {
-        console.log('inside ---------');
+    public async findAllCustomers(): Promise<RegCustomersResponse> {
         const customerData: Customer[] = await this.repository.find({
             select: {
                 id: true,
@@ -149,7 +142,6 @@ export class CustomerService {
                 gender: true,
             },
         });
-        console.log('------', customerData);
 
         if (!customerData) {
             return {

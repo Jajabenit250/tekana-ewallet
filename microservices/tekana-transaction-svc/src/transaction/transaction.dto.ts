@@ -1,5 +1,8 @@
 import { IsNumber, IsString, Min } from 'class-validator';
-import { CreateTransactionRequest } from './proto/transaction.pb';
+import {
+    CreateTransactionRequest,
+    CustTransactionsRequest,
+} from './proto/transaction.pb';
 
 export class CreateTransactionRequestDto implements CreateTransactionRequest {
     @IsString()
@@ -11,4 +14,9 @@ export class CreateTransactionRequestDto implements CreateTransactionRequest {
     @IsNumber()
     @Min(1)
     public amount: number;
+}
+
+export class CustTransactionsRequestDto implements CustTransactionsRequest {
+    @IsString()
+    public accNumber: string;
 }

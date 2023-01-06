@@ -83,7 +83,7 @@ sample architecture considering the changes
 
 ![My First Board (3)](https://user-images.githubusercontent.com/51251401/210193514-c62bda1e-053b-49dc-9642-5f7d50755875.jpg)
 
-1. Details
+1. Details of approach and why it was considered
 
     - Load balancers: To handle the high volume of requests and traffic, the system should use load balancers to distribute requests across multiple servers. This can help ensure that the system remains responsive and can scale horizontally as needed.
 
@@ -113,8 +113,6 @@ sample architecture considering the changes
 2. Database Design
 
 ![new design](https://user-images.githubusercontent.com/51251401/210474335-56ade410-2bc4-405c-8d88-d64f53d2ed75.png)
-
-
 
 3. API EndPoints
 

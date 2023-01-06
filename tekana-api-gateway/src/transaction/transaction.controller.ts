@@ -8,7 +8,9 @@ import {
     UseGuards,
     Post,
     Body,
+    Req,
 } from '@nestjs/common';
+import { Request } from 'express';
 import { ClientGrpc } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
 import {
@@ -16,6 +18,8 @@ import {
     TRANSACTION_SERVICE_NAME,
     CreateTransactionResponse,
     CreateTransactionRequest,
+    CustTransactionsRequest,
+    CustTransactionsResponse,
 } from './transaction.pb';
 import { CustomerGuard } from '../customer/customer.guard';
 
@@ -40,11 +44,15 @@ export class TransactionController implements OnModuleInit {
         return this.svc.createTransaction(body);
     }
 
-    //   @Get(':id')
-    //   @UseGuards(CustomerGuard)
-    //   private async findOne(
-    //     @Param('id', ParseIntPipe) id: number,
-    //   ): Promise<Observable<FindOneResponse>> {
-    //     return this.svc.findOne({ id });
-    //   }
+    @Get(':accNumber')
+    @UseGuards(CustomerGuard)
+    private async customerTransactions(
+        @Req() req: Request,
+    ): Promise<Observable<CustTransactionsResponse>> {
+        const body: CustTransactionsRequest = { accNumber: '' };
+
+        body.accNumber = <string>req.params.accNumber;
+
+        return this.svc.custTransactions(body);
+    }
 }

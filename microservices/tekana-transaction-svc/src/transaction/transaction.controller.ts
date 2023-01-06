@@ -4,8 +4,12 @@ import { TransactionService } from './transaction.service';
 import {
     TRANSACTION_SERVICE_NAME,
     CreateTransactionResponse,
+    CustTransactionsResponse,
 } from './proto/transaction.pb';
-import { CreateTransactionRequestDto } from './transaction.dto';
+import {
+    CreateTransactionRequestDto,
+    CustTransactionsRequestDto,
+} from './transaction.dto';
 
 @Controller()
 export class TransactionController {
@@ -17,5 +21,11 @@ export class TransactionController {
         data: CreateTransactionRequestDto,
     ): Promise<CreateTransactionResponse> {
         return this.service.createTransaction(data);
+    }
+    @GrpcMethod(TRANSACTION_SERVICE_NAME, 'CustTransactions')
+    private async custTransactions(
+        data: CustTransactionsRequestDto,
+    ): Promise<CustTransactionsResponse> {
+        return this.service.custTransactions(data);
     }
 }

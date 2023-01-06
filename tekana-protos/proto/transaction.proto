@@ -14,7 +14,6 @@ message TransactionData {
   string receiverAcc = 2;
   double amount = 3;
   string status = 4;
-  string createdAt = 5;
 }
 
 // Make Transaction
@@ -31,10 +30,10 @@ message CreateTransactionResponse {
   int32 id = 3;
 }
 
-// Get Transactions By CustomerId
+// Get Transactions By Account Number
 
 message CustTransactionsRequest {
-  int32 customerId = 1;
+  string accNumber = 1;
 }
 
 message CustTransactionsResponse {

@@ -26,12 +26,19 @@ export interface DepositMoneyResponse {
   error: string[];
 }
 
+export interface WalletActivityLogs {
+  transactionId: number;
+  action: string;
+  amount: string;
+}
+
 export interface WalletData {
   id: number;
   accNumber: string;
   customerId: number;
   walletType: string;
   balance: number;
+  walletActivityLogs: WalletActivityLogs[];
 }
 
 export interface FindOneRequest {

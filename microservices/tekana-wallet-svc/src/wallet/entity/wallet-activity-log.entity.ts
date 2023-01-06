@@ -21,6 +21,9 @@ export class WalletActivityLog extends BaseEntity {
     @Column({ type: 'integer' })
     public transactionId!: number;
 
+    @Column({ type: 'decimal', precision: 12, scale: 2 })
+    public amount!: number | null;
+
     @Column('enum', {
         name: 'action',
         nullable: true,
