@@ -4,6 +4,8 @@ WORKDIR /usr/local/tekana-api-gateway
 
 COPY dist package.json ./
 
+RUN npm run proto:install
+
 RUN npm install
 
 FROM node:14-alpine
