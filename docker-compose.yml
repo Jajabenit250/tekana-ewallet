@@ -7,7 +7,9 @@ services:
     networks:
       - "frontend"
       - "backend"
-      - "customerdns"
+      - "customerdomain"
+    ports:
+      - "50051:50051"
     build:
       context: "./microservices/tekana-customer-svc"
     depends_on:
@@ -27,7 +29,9 @@ services:
     networks:
       - "frontend"
       - "backend"
-      - "walletdns"
+      - "walletdomain"
+    ports:
+      - "50052:50052"
     build:
       context: "./microservices/tekana-wallet-svc"
     depends_on:
@@ -47,7 +51,9 @@ services:
     networks:
       - "frontend"
       - "backend"
-      - "transactiondns"
+      - "transactiondomain"
+    ports:
+      - "50053:50053"
     build:
       context: "./microservices/tekana-transaction-svc"
     depends_on:
@@ -66,6 +72,8 @@ services:
     image: "tekana-api-gateway:dev"
     networks:
       - "frontend"
+    ports:
+      - "3000:3000"
     build:
       context: "./tekana-api-gateway"
     depends_on:
@@ -106,9 +114,9 @@ services:
   customer-db:
     image: "postgres:12.1-alpine"
     networks:
-      - "customerdns"
-    expose:
-      - "5432"
+      - "customerdomain"
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: '12345'
@@ -122,9 +130,9 @@ services:
   wallet-db:
     image: "postgres:12.1-alpine"
     networks:
-      - "walletdns"
-    expose:
-      - "5432"
+      - "walletdomain"
+    ports:
+      - "5433:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: '12345'
@@ -138,9 +146,9 @@ services:
   transaction-db:
     image: "postgres:12.1-alpine"
     networks:
-      - "transactiondns"
-    expose:
-      - "5432"
+      - "transactiondomain"
+    ports:
+      - "5434:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: '12345'
@@ -154,6 +162,6 @@ services:
 networks:
   frontend:
   backend:
-  customerdns:
-  walletdns:
-  transactiondns:
+  customerdomain:
+  walletdomain:
+  transactiondomain:

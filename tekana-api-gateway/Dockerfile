@@ -2,23 +2,25 @@ FROM node:14-alpine as build
 
 WORKDIR /usr/local/tekana-api-gateway
 
-COPY dist package.json ./
+COPY package*.json ./
 
 RUN apk add --no-cache git
 
 RUN apk -U --no-cache add protobuf protobuf-dev
 
-
 RUN npm run proto:install
 
-RUN npm install --production
+RUN npm install
 
-FROM node:14-alpine 
+# Bundle app source
+COPY . .
 
-WORKDIR /usr/local/tekana-api-gateway
+# Compile TypeScript source
+RUN npm run prebuild
+RUN npm run build
 
-COPY --from=build /usr/local/tekana-api-gateway .
 
 EXPOSE 3000
 
-CMD ["node", "main.js"]
+
+CMD ["npm", "start"]
