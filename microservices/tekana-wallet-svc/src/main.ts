@@ -6,14 +6,17 @@ import { AppModule } from './app.module';
 import { protobufPackage } from './wallet/wallet.pb';
 
 async function bootstrap() {
-  const app: INestMicroservice = await NestFactory.createMicroservice(AppModule, {
-    transport: Transport.GRPC,
-    options: {
-      url: '0.0.0.0:50052',
-      package: protobufPackage,
-      protoPath: join('node_modules/tekana-protos/proto/wallet.proto'),
+  const app: INestMicroservice = await NestFactory.createMicroservice(
+    AppModule,
+    {
+      transport: Transport.GRPC,
+      options: {
+        url: '0.0.0.0:50052',
+        package: protobufPackage,
+        protoPath: join('node_modules/tekana-protos/proto/wallet.proto'),
+      },
     },
-  });
+  );
 
   await app.listen();
 }

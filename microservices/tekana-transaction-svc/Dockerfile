@@ -4,6 +4,12 @@ WORKDIR /usr/local/tekana-transaction-svc
 
 COPY dist package.json ./
 
+RUN apk add --no-cache git
+
+RUN apk -U --no-cache add protobuf protobuf-dev
+
+RUN npm run proto:install
+
 RUN npm install
 
 FROM node:14-alpine
@@ -12,6 +18,6 @@ WORKDIR /usr/local/tekana-transaction-svc
 
 COPY --from=build /usr/local/tekana-transaction-svc .
 
-EXPOSE 50051
+EXPOSE 50053
 
-CMD ["node", "main.js"]
+CMD ["npm", "start"]

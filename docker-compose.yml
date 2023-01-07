@@ -1,117 +1,39 @@
 version: '3.7'
 
 services:
-  generic:
-    build:
-      context: .docker
-      dockerfile: Dockerfile
 
-  customers-svc:
-    image: "customers-svc:dev"
+  tekana-customer-svc:
+    image: "tekana-customer-svc:dev"
     build:
       context: "./microservices/tekana-customer-svc"
-    networks:
-      - "frontend"
-      - "backend"
-      - "customersdomain"
-    expose:
-      - "50051"
     depends_on:
-      - "customers-db"
-    environment:
-      NODE_ENV: "test"
-      URL: "0.0.0.0"
-      PORT: "50051"
-      DB_NAME: "postgres"
-      DB_HOST: "customers-db"
-      DB_PORT: "5432"
-      DB_customer: "postgres"
-      DB_PASSWORD: "postgres"
-    restart: "on-failure"
+      - "postgres_db"
 
-  wallets-svc:
-    image: "wallets-svc:dev"
+  tekana-wallet-svc:
+    image: "tekana-wallet-svc:dev"
     build:
       context: "./microservices/tekana-wallet-svc"
-    networks:
-      - "frontend"
-      - "backend"
-      - "walletsdomain"
-    expose:
-      - "50052"
     depends_on:
-      - "wallets-db"
-    environment:
-      NODE_ENV: "test"
-      URL: "0.0.0.0"
-      PORT: "50052"
-      DB_NAME: "postgres"
-      DB_HOST: "wallets-db"
-      DB_PORT: "5433"
-      DB_customer: "postgres"
-      DB_PASSWORD: "postgres"
-    restart: "on-failure"
+      - "postgres_db"
 
-  transactions-svc:
-    image: "transactions-svc:dev"
+  tekana-transaction-svc:
+    image: "tekana-transaction-svc:dev"
     build:
       context: "./microservices/tekana-transaction-svc"
-    networks:
-      - "frontend"
-      - "backend"
-      - "transactionsdomain"
-    expose:
-      - "50053"
     depends_on:
-      - "transactions-db"
-    environment:
-      NODE_ENV: "test"
-      URL: "0.0.0.0"
-      PORT: "50053"
-      DB_NAME: "postgres"
-      DB_HOST: "transactions-db"
-      DB_PORT: "5434"
-      DB_customer: "postgres"
-      DB_PASSWORD: "postgres"
-    restart: "on-failure"
+      - "postgres_db"
 
-  api-gateway:
-    image: "api-gateway:dev"
+  tekana-api-gateway:
+    image: "tekana-api-gateway:dev"
     build:
       context: "./tekana-api-gateway"
-    networks:
-      - "frontend"
-    ports:
-      - "3000:3000"
     depends_on:
-      - "wallets-svc"
-      - "transactions-svc"
-      - "customers-svc"
-    environment:
-      NODE_ENV: "test"
-      PORT: "3000"
-      walletS_SVC_URL: "wallets-svc"
-      walletS_SVC_PORT: "50051"
-      transactionS_SVC_URL: "transactions-svc"
-      transactionS_SVC_PORT: "50051"
-      customerS_SVC_URL: "customers-svc"
-      customerS_SVC_PORT: "50051"
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "wget",
-          "localhost:3000/healthz -q -O - > /dev/null 2>&1"
-        ]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-    restart: "on-failure"
+      - "tekana-transaction-svc"
+      - "tekana-wallet-svc"
+      - "tekana-customer-svc"
 
   swagger-ui:
     image: "swaggerapi/swagger-ui:v3.25.0"
-    networks:
-      - "frontend"
     ports:
       - "8080:8080"
     volumes:
@@ -129,57 +51,19 @@ services:
       timeout: 10s
       retries: 5
 
-  customers-db:
+  postgres_db:
     image: "postgres:12.1-alpine"
-    networks:
-      - "customersdomain"
     expose:
       - "5432"
     environment:
-      POSTGRES_customer: "postgres"
-      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: '12345'
+      POSTGRES_DB: customer_db wallet_db transaction_db
     healthcheck:
-      test: [ "CMD-SHELL", "su -c 'pg_isready -U postgres' postgres" ]
+      test: [ "CMD-SHELL", "su -c 'pg_isready -U postgres' 12345" ]
       interval: 30s
       timeout: 30s
       retries: 3
     restart: "on-failure"
-
-  wallets-db:
-    image: "postgres:12.1-alpine"
-    networks:
-      - "walletsdomain"
-    expose:
-      - "5433"
-    environment:
-      POSTGRES_customer: "postgres"
-      POSTGRES_PASSWORD: "postgres"
-    healthcheck:
-      test: [ "CMD-SHELL", "su -c 'pg_isready -U postgres' postgres" ]
-      interval: 30s
-      timeout: 30s
-      retries: 3
-    restart: "on-failure"
-
-  transactions-db:
-    image: "postgres:12.1-alpine"
-    networks:
-      - "transactionsdomain"
-    expose:
-      - "5434"
-    environment:
-      POSTGRES_customer: "postgres"
-      POSTGRES_PASSWORD: "postgres"
-    healthcheck:
-      test: [ "CMD-SHELL", "su -c 'pg_isready -U postgres' postgres" ]
-      interval: 30s
-      timeout: 30s
-      retries: 3
-    restart: "on-failure"
-
-networks:
-  frontend:
-  backend:
-  customersdomain:
-  walletsdomain:
-  transactionsdomain:
+    ports:
+      - "5432:5432"
