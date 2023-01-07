@@ -7,12 +7,13 @@ import { HttpExceptionFilter } from './customer/filter/http-exception.filter';
 import { protobufPackage } from './customer/customer.pb';
 
 async function bootstrap() {
+  console.log(`${process.env.URL}:${process.env.PORT}`);
   const app: INestMicroservice = await NestFactory.createMicroservice(
     AppModule,
     {
       transport: Transport.GRPC,
       options: {
-        url: '0.0.0.0:50051',
+        url: `${process.env.URL}:${process.env.PORT}`,
         package: protobufPackage,
         protoPath: join('node_modules/tekana-protos/proto/customer.proto'),
       },

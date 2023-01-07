@@ -5,15 +5,17 @@ import {
   TRANSACTION_SERVICE_NAME,
 } from './transaction.pb';
 import { TransactionController } from './transaction.controller';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     ClientsModule.register([
       {
         name: TRANSACTION_SERVICE_NAME,
         transport: Transport.GRPC,
         options: {
-          url: '0.0.0.0:50053',
+          url: `${process.env.TRANSACTION_SVC_URL}:${process.env.TRANSACTION_SVC_PORT}`,
           package: TRANSACTION_PACKAGE_NAME,
           protoPath: 'node_modules/tekana-protos/proto/transaction.proto',
         },
@@ -22,4 +24,4 @@ import { TransactionController } from './transaction.controller';
   ],
   controllers: [TransactionController],
 })
-export class TransactionModule { }
+export class TransactionModule {}

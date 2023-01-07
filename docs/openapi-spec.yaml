@@ -6,9 +6,10 @@ info:
     email: jajabenit@gmail.com
   version: 1.0.0
 servers:
+- url: http://localhost:3000
+  description: Tekana Wallet APIs
 - url: https://virtserver.swaggerhub.com/JAJABENIT/Tekana/1.0.0
   description: SwaggerHub API Auto Mocking
-- url: http://localhost:3000
 tags:
 - name: customer
 - name: wallet

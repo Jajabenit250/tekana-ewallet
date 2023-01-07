@@ -10,7 +10,7 @@ RUN apk -U --no-cache add protobuf protobuf-dev
 
 RUN npm run proto:install
 
-RUN npm install
+RUN npm install --production
 
 FROM node:14-alpine
 
@@ -20,4 +20,4 @@ COPY --from=build /usr/local/tekana-wallet-svc .
 
 EXPOSE 50052
 
-CMD ["npm", "start"]
+CMD ["node", "main.js"]

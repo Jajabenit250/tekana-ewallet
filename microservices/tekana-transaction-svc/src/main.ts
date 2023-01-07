@@ -11,7 +11,7 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
-        url: '0.0.0.0:50053',
+        url: `${process.env.URL}:${process.env.PORT}`,
         package: protobufPackage,
         protoPath: join('node_modules/tekana-protos/proto/transaction.proto'),
       },
