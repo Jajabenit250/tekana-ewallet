@@ -44,8 +44,8 @@ This will involve the following activities:
 
 ## Proposed Changes
 
-This Changes are only for demostration of what will happens while rebuilding the backend.
-I considered only APIs that handle Customer, Wallet, and Transactions Operations
+This Changes are for demostration of what will happens while rebuilding the backend.
+I considered APIs that handle Customer, Wallet, and Transactions Operations
 
 ### Business Requirements
 
@@ -116,9 +116,22 @@ sample architecture considering the changes
 
 3. API EndPoints
 
+| method             | resource         | description                                                                                    |
+|:-------------------|:-----------------|:-----------------------------------------------------------------------------------------------|
+| `POST`             | `/customer/register`         | creates a new customer in the DB (object customer to be included in request's body)                                     |
+| `PUT`              | `/customer/login`     | authenticate customer (object customer to be included in request's body) returns the specified token of the user                   |
+| `GET` (auth)       | `/customer`         | return lists of customers who are registered in the system      (token must be provided in request header)                |
+| `GET` (auth)       | `/customer/:id`     | return customer details (token must be provided in request header)                   |
+| `POST` (auth)      | `/wallet`         | creates a wallet for the customer in the DB (object wallet to be included in request's body) and (token must be provided in request header)           |
+| `GET` (auth)       | `/wallet`     | return lists of wallet that belong to the customer (token must be provided in request header)        |
+| `POST` (auth)      | `/wallet/deposit`         | Deposit money to customer wallet for testing case only (object walletDeposit to be included in request's body) and (token must be provided in request header)                     |
+| `GET` (auth)       | `/wallet/:accNumber`     | return customer wallet information accNumber must be provided in header params and (token must be provided in request header)      |
+| `GET` (auth)       | `/transaction`         | creates a new user transaction (object transaction to be includued in request's body)  and (token must be provided in request header)            |
+| `GET` (auth)       | `/transaction/:accNumber`     | return all wallet transactions, accNumber must be provided in header params and (token must be provided in request header)    |
+
 ### Integrate with the front-end and other components
 
-    For Sake Of Demo Swagger UI is used to test and run APIs
+- For Sake Of Demo Swagger UI is used to test and run APIs
 
 ## Source Codes
 
@@ -128,7 +141,7 @@ sample architecture considering the changes
 
 2. `tekana-api-gateway` - This directory consists of the API Gateway project. All code relating to the API Gateway resides here.
 
-3. `docs` - This directory consists of all files relating to documentation. The OpenAPI Specification for the REST API documentation can be found here.
+3. `docs` - This directory consists of all files relating to documentation. Swagger file with API docs.
 
 4. `microservices` - This directory consists of all microservice projects.
 
@@ -148,11 +161,36 @@ sample architecture considering the changes
 - [Docker](https://docs.docker.com/install/) - latest
 - [Docker Compose](https://docs.docker.com/compose/install/) - latest
 
-2. On the Terminal, go into the project's root folder (`cd /project/root/folder`) and execute `npm start`. The start script will install all npm dependencies for all projects, lint the code, compile the code, build the artifacts (Docker images) and run them via `docker-compose`.
+2. On the Terminal, The start script will install all npm dependencies for all projects, lint the code, compile the code, build the artifacts (Docker images) and run them via `docker-compose`.
+
+- Clone the repository
+
+```
+git clone https://github.com/Jajabenit250/tekana-ewallet.git
+```
+
+- Install dependencies
+
+```
+cd tekana-ewallet
+npm start
+```
+
+- Run unit tests
+
+```
+npm run test
+```
+
+- Run unit tests with coverage
+
+```
+npm run test:coverage
+```
 
 3. Once the start script is done, the API Gateway will listening on [http://localhost:3000](http://localhost:3000)
 
-4. To test the API, head to the Swagger UI running at [http://localhost:8080](http://localhost:3000)
+4. To test the API, head to the Swagger UI running at [http://localhost:8080](http://localhost:8080)
 
 ## Roadmap
 
