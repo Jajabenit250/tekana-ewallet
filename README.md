@@ -131,7 +131,7 @@ sample architecture considering the changes
 
 ### Integrate with the front-end and other components
 
-- For Sake Of Demo Swagger UI is used to test and run APIs
+- For Sake Of Demo Postman or Swagger UI is used to test and run APIs
 
 ## Source Codes
 
@@ -190,9 +190,9 @@ npm run test:coverage
 
 3. Once the start script is done, the API Gateway will listening on [http://localhost:3000](http://localhost:3000)
 
-4. To Run the API in postman import ``` ./Tekana.postman_collection.json ``` in your postman collection
+4. To Run the API with online Postman collection use [https://documenter.getpostman.com/view/14144150/2s8Z75S9jn](https://documenter.getpostman.com/view/14144150/2s8Z75S9jn) or in postman import ``` ./Tekana.postman_collection.json ``` in your postman collection
 
-5. To test the API, head to the Swagger UI running at [http://localhost:8080/docs](http://localhost:8080/docs)
+5. To test the API using Swagger UI, open [http://localhost:8080/docs](http://localhost:8080/docs)
 
 ## Roadmap
 
