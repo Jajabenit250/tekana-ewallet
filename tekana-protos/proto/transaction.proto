@@ -22,6 +22,7 @@ message CreateTransactionRequest {
   string senderAcc = 1;
   string receiverAcc = 2;
   double amount = 3;
+  int32 customerId = 4;
 }
 
 message CreateTransactionResponse {

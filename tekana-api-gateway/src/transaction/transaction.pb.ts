@@ -15,6 +15,7 @@ export interface CreateTransactionRequest {
   senderAcc: string;
   receiverAcc: string;
   amount: number;
+  customerId: number;
 }
 
 export interface CreateTransactionResponse {

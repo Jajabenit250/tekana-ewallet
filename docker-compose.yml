@@ -58,10 +58,13 @@ services:
       context: "./microservices/tekana-transaction-svc"
     depends_on:
       - "transaction-db"
+      - "tekana-wallet-svc"
     environment:
       NODE_ENV: "test"
       URL: "0.0.0.0"
       PORT: "50053"
+      WALLET_SVC_URL: "tekana-wallet-svc"
+      WALLET_SVC_PORT: "50052"
       DB_NAME: "postgres"
       DB_HOST: "transaction-db"
       DB_PORT: "5432"
@@ -91,25 +94,13 @@ services:
       TRANSACTION_SVC_PORT: "50053"
 
   swagger-ui:
-    image: "swaggerapi/swagger-ui:v3.25.0"
+    image: "swagger-ui:dev"
     networks:
       - "frontend"
     ports:
       - "8080:8080"
-    volumes:
-      - "./docs/openapi-spec.yaml:/usr/share/spec/openapi-spec.yaml"
-    environment:
-      SWAGGER_JSON: "/usr/share/spec/openapi-spec.yaml"
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "wget",
-          "localhost:8080 -q -O - > /dev/null 2>&1"
-        ]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+    build:
+      context: "./docs"
 
   customer-db:
     image: "postgres:12.1-alpine"

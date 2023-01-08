@@ -1,0 +1,771 @@
+openapi: 3.0.0
+info:
+  title: Tekana eWallet APIs
+  contact:
+    name: Benit Havugimana
+    email: jajabenit@gmail.com
+  version: 1.0.0
+servers:
+- url: http://localhost:3000
+  description: Localhost
+- url: https://virtserver.swaggerhub.com/JAJABENIT/Tekana/1.0.0
+  description: SwaggerHub API Auto Mocking
+tags:
+- name: customer
+- name: wallet
+- name: transaction
+paths:
+  /customer/register:
+    post:
+      tags:
+      - customer
+      summary: Register
+      operationId: customerRegisterPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                fullName: jaja
+                nationalId: "1234556667"
+                gender: M
+                email: jajabenit@gmail.com
+                password: Password@10
+      responses:
+        "201":
+          description: Successfully queried resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/GenericResponse'
+              example:
+                status: "201"
+        "400":
+          description: Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 400
+                type: VALIDATION_ERROR
+                message: Validation has failed
+                data:
+                - type: VALIDATION_ERROR
+                  field: url
+                  message: URL must be a valid URL
+        "401":
+          description: Authentication has failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 401
+                type: AUTHENTICATION_REQUIRED
+                message: Authentication is required
+                data: []
+        "403":
+          description: Method is not allowed or access has been denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 403
+                type: FORBIDDEN
+                message: Access denied
+                data: []
+        "500":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 500
+                type: INTERNAL_SERVER_ERROR
+                message: An unexpected error has occurred
+                data: []
+      x-swagger-router-controller: Customer
+  /customer/login:
+    put:
+      tags:
+      - customer
+      summary: Login
+      operationId: customerLoginPUT
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: jajabenit@gmail.com
+                password: Password@10
+      responses:
+        "200":
+          description: Successfully queried resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/GenericResponse'
+              example:
+                status: "201"
+                token: ""
+        "400":
+          description: Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 400
+                type: VALIDATION_ERROR
+                message: Validation has failed
+                data:
+                - type: VALIDATION_ERROR
+                  field: url
+                  message: URL must be a valid URL
+        "401":
+          description: Authentication has failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 401
+                type: AUTHENTICATION_REQUIRED
+                message: Authentication is required
+                data: []
+        "403":
+          description: Method is not allowed or access has been denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 403
+                type: FORBIDDEN
+                message: Access denied
+                data: []
+        "500":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 500
+                type: INTERNAL_SERVER_ERROR
+                message: An unexpected error has occurred
+                data: []
+      x-swagger-router-controller: Customer
+  /customer/{customerId}:
+    get:
+      tags:
+      - customer
+      summary: Customer by Id
+      operationId: customerCustomerIdGET
+      parameters:
+      - name: customerId
+        in: path
+        description: Numeric ID of the Customer to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Successfully queried Customer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "400":
+          description: Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 400
+                type: VALIDATION_ERROR
+                message: Validation has failed
+                data:
+                - type: VALIDATION_ERROR
+                  field: url
+                  message: URL must be a valid URL
+        "401":
+          description: Authentication has failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 401
+                type: AUTHENTICATION_REQUIRED
+                message: Authentication is required
+                data: []
+        "403":
+          description: Method is not allowed or access has been denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 403
+                type: FORBIDDEN
+                message: Access denied
+                data: []
+        "500":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 500
+                type: INTERNAL_SERVER_ERROR
+                message: An unexpected error has occurred
+                data: []
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Customer
+  /customer:
+    get:
+      tags:
+      - customer
+      summary: Customers
+      operationId: customerGET
+      responses:
+        "200":
+          description: Successfully queried Customer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "400":
+          description: Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 400
+                type: VALIDATION_ERROR
+                message: Validation has failed
+                data:
+                - type: VALIDATION_ERROR
+                  field: url
+                  message: URL must be a valid URL
+        "401":
+          description: Authentication has failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 401
+                type: AUTHENTICATION_REQUIRED
+                message: Authentication is required
+                data: []
+        "403":
+          description: Method is not allowed or access has been denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 403
+                type: FORBIDDEN
+                message: Access denied
+                data: []
+        "500":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 500
+                type: INTERNAL_SERVER_ERROR
+                message: An unexpected error has occurred
+                data: []
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Customer
+  /wallet:
+    get:
+      tags:
+      - wallet
+      summary: Accounts By Customer
+      operationId: walletGET
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Wallet
+    post:
+      tags:
+      - wallet
+      summary: Create Account
+      operationId: walletPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                walletType: personal
+      responses:
+        "200":
+          description: Successfully queried resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/WalletQueryResponse'
+              example:
+                status: "200"
+                id: 1
+        "400":
+          description: Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 400
+                type: VALIDATION_ERROR
+                message: Validation has failed
+                data:
+                - type: VALIDATION_ERROR
+                  field: url
+                  message: URL must be a valid URL
+        "401":
+          description: Authentication has failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 401
+                type: AUTHENTICATION_REQUIRED
+                message: Authentication is required
+                data: []
+        "403":
+          description: Method is not allowed or access has been denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 403
+                type: FORBIDDEN
+                message: Access denied
+                data: []
+        "500":
+          description: Unexpected Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/ErrorResponse'
+              example:
+                code: 500
+                type: INTERNAL_SERVER_ERROR
+                message: An unexpected error has occurred
+                data: []
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Wallet
+  /wallet/deposit:
+    post:
+      tags:
+      - wallet
+      summary: Add Balance for Testing
+      operationId: walletDepositPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                accNumber: 200-6-1672993748555
+                amount: 10000
+                transactionId: 290002
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Wallet
+  /wallet/{accNumber}:
+    get:
+      tags:
+      - wallet
+      summary: Account By Acc Number
+      operationId: walletAccNumberGET
+      parameters:
+      - name: accNumber
+        in: path
+        description: String Acc Number of the wallet to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Wallet
+  /transaction:
+    post:
+      tags:
+      - transaction
+      summary: Create Transaction
+      operationId: transactionPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                receiverAcc: 200-6-1672993748555
+                senderAcc: 200-6-1672999556649
+                amount: 10
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Transaction
+  /transaction/{accNumber}:
+    get:
+      tags:
+      - transaction
+      summary: Transactions By Acc Number
+      operationId: transactionAccNumberGET
+      parameters:
+      - name: accNumber
+        in: path
+        description: String Acc Number of the wallet to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+      security:
+      - bearerAuth: []
+      x-swagger-router-controller: Transaction
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The identifier for the Customer record
+          format: int32
+          readOnly: true
+        email:
+          type: string
+          description: email of the Customer.
+        fullName:
+          type: string
+          description: fullname of the Customer.
+        nationalId:
+          type: string
+          description: National Id of the Customer.
+        gender:
+          type: string
+          description: The gender of the Customer.
+      description: Customer model
+      example:
+        id: 2
+        email: jajabenit@gmail.com
+        fullName: jaja
+        nationalId: "1234556667"
+        gender: M
+    Transaction:
+      required:
+      - Transaction
+      type: object
+      properties:
+        senderAcc:
+          type: string
+          description: The identifier for the Sender Account
+        receiverAcc:
+          type: string
+          description: The identifier for the Receiver Account
+          format: uuid
+        amount:
+          type: integer
+          description: The Amount sent
+        status:
+          type: string
+          description: Transaction Status
+      description: Transaction model
+      example:
+        senderAcc: 200-1-1673132486606
+        receiverAcc: 200-1-1673132625492
+        amount: 100
+        status: completed
+    Wallet:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The identifier for the Wallet record
+          format: int32
+          readOnly: true
+        accNumber:
+          type: string
+          description: The name of the organization
+        customerId:
+          type: string
+          description: The name of the organization
+        walletType:
+          type: string
+          description: The name of the organization
+        balance:
+          type: integer
+          description: The name of the organization
+        walletActivityLogs:
+          $ref: '#/components/schemas/Wallet_walletActivityLogs'
+      description: Wallet model
+      example:
+        id: 7fe5b86f-b30d-40ee-9b8b-8619edf0fb18
+        name: acme
+        createdAt: 2019-08-05T10:02:18.047Z
+        updatedAt: 2020-01-05T15:22:03.020Z
+        version: 2
+    inline_response_200:
+      allOf:
+      - $ref: '#/components/responses/QueryResponse'
+      - type: object
+        properties:
+          data:
+            type: array
+            items:
+              $ref: '#/components/schemas/Customer'
+    Wallet_walletActivityLogs:
+      type: object
+      properties:
+        transactionId:
+          type: integer
+          description: The name of the organization
+        action:
+          type: string
+          description: The name of the organization
+        amount:
+          type: integer
+          description: The name of the organization
+      description: The name of the organization
+  responses:
+    CustomerQueryResponse:
+      description: Successfully queried Customer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200'
+    TransactionQueryResponse:
+      description: Successfully queried Transactions
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/responses/QueryResponse'
+            - type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Transaction'
+    WalletQueryResponse:
+      description: Successfully queried Wallets
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/responses/QueryResponse'
+            - type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Wallet'
+    QueryResponse:
+      description: Successfully queried resources
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  default: []
+            description: Generic response schema for queries or search
+    GenericResponse:
+      description: Generic response
+      content:
+        application/json:
+          schema:
+            required:
+            - message
+            type: object
+            properties:
+              message:
+                type: string
+                description: A descriptive message for the response
+            description: Generic response message
+          example:
+            message: Generic message
+    DeleteResponse:
+      description: Successfully deleted resource/s
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+                description: The number of records deleted from the database
+                format: int32
+          example:
+            count: 8
+    ErrorResponse:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: The error or response code
+                format: int32
+                readOnly: true
+              type:
+                type: string
+                description: The error name or type
+                readOnly: true
+              message:
+                type: string
+                description: A high level descriptive message for the error
+                readOnly: true
+              data:
+                type: array
+                description: Detailed description of the errors in the request
+                readOnly: true
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      description: The error name or type
+                      default: ""
+                    field:
+                      type: string
+                      description: The name of the field with the error
+                      default: ""
+                    message:
+                      type: string
+                      description: The detailed error message
+                      default: ""
+          example:
+            code: 404
+            type: NOT_FOUND
+            message: Resource not found
+            data: []
+    BadRequestError:
+      description: Invalid input or validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/responses/ErrorResponse'
+          example:
+            code: 400
+            type: VALIDATION_ERROR
+            message: Validation has failed
+            data:
+            - type: VALIDATION_ERROR
+              field: url
+              message: URL must be a valid URL
+    ConflictError:
+      description: Unique constraint validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/responses/ErrorResponse'
+          example:
+            code: 409
+            type: CONFLICT_ERROR
+            message: A record with the same name exists
+            data: []
+    InvalidCredentialsError:
+      description: Authentication has failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/responses/ErrorResponse'
+          example:
+            code: 401
+            type: AUTHENTICATION_REQUIRED
+            message: Authentication is required
+            data: []
+    NotAuthorizedError:
+      description: Method is not allowed or access has been denied
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/responses/ErrorResponse'
+          example:
+            code: 403
+            type: FORBIDDEN
+            message: Access denied
+            data: []
+    ResourceNotFoundError:
+      description: Resource not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/responses/ErrorResponse'
+          example:
+            code: 404
+            type: NOT_FOUND
+            message: Resource not found
+            data: []
+    InternalError:
+      description: Unexpected Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/responses/ErrorResponse'
+          example:
+            code: 500
+            type: INTERNAL_SERVER_ERROR
+            message: An unexpected error has occurred
+            data: []
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

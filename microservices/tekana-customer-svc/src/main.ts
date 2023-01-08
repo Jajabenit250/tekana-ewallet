@@ -7,7 +7,6 @@ import { HttpExceptionFilter } from './customer/filter/http-exception.filter';
 import { protobufPackage } from './customer/customer.pb';
 
 async function bootstrap() {
-  console.log(`${process.env.URL}:${process.env.PORT}`);
   const app: INestMicroservice = await NestFactory.createMicroservice(
     AppModule,
     {

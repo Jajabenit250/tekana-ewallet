@@ -13,7 +13,7 @@ import { WALLET_SERVICE_NAME, WALLET_PACKAGE_NAME } from './proto/wallet.pb';
         name: WALLET_SERVICE_NAME,
         transport: Transport.GRPC,
         options: {
-          url: '0.0.0.0:50052',
+          url: `${process.env.WALLET_SVC_URL}:${process.env.WALLET_SVC_PORT}`,
           package: WALLET_PACKAGE_NAME,
           protoPath: 'node_modules/tekana-protos/proto/wallet.proto',
         },
@@ -24,4 +24,4 @@ import { WALLET_SERVICE_NAME, WALLET_PACKAGE_NAME } from './proto/wallet.pb';
   controllers: [TransactionController],
   providers: [TransactionService],
 })
-export class TransactionModule { }
+export class TransactionModule {}

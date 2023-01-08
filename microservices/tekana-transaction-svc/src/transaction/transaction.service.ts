@@ -17,6 +17,7 @@ import {
   CustTransactionsRequest,
   CustTransactionsResponse,
 } from './proto/transaction.pb';
+import { CreateTransactionRequestDto } from './transaction.dto';
 
 @Injectable()
 export class TransactionService implements OnModuleInit {
@@ -36,7 +37,6 @@ export class TransactionService implements OnModuleInit {
   public async createTransaction(
     data: CreateTransactionRequest,
   ): Promise<CreateTransactionResponse> {
-    console.log('--------xxxxx');
     // find Sender account
     const senderWallet: FindOneResponse = await firstValueFrom(
       this.walletSvc.findOne({ accNumber: data.senderAcc }),
@@ -52,6 +52,12 @@ export class TransactionService implements OnModuleInit {
         id: null,
         error: ['Sender Wallet not found'],
         status: senderWallet.status,
+      };
+    } else if (senderWallet.data.customerId != data.customerId) {
+      return {
+        id: null,
+        error: ['Can not perform the action wallet belong to someone else'],
+        status: receiverWallet.status,
       };
     } else if (receiverWallet.status >= HttpStatus.NOT_FOUND) {
       return {

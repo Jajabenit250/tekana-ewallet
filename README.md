@@ -190,7 +190,7 @@ npm run test:coverage
 
 3. Once the start script is done, the API Gateway will listening on [http://localhost:3000](http://localhost:3000)
 
-4. To test the API, head to the Swagger UI running at [http://localhost:8080](http://localhost:8080)
+4. To test the API, head to the Swagger UI running at [http://localhost:8080/docs](http://localhost:8080/docs)
 
 ## Roadmap
 

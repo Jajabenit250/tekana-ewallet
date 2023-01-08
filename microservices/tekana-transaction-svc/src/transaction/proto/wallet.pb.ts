@@ -26,10 +26,10 @@ export interface DepositMoneyResponse {
   error: string[];
 }
 
-export interface WalletActivityLogs {
+export interface WalletActivityLog {
   transactionId: number;
   action: string;
-  amount: string;
+  amount: number;
 }
 
 export interface WalletData {
@@ -38,7 +38,7 @@ export interface WalletData {
   customerId: number;
   walletType: string;
   balance: number;
-  walletActivityLogs: WalletActivityLogs[];
+  walletActivityLogs: WalletActivityLog[];
 }
 
 export interface FindOneRequest {
