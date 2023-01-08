@@ -1,0 +1,692 @@
+{
+	"info": {
+		"_postman_id": "12df6bcc-a04d-49df-9182-c1a3f08b962c",
+		"name": "Tekana",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"fullName\": \"jaja\",\n\t\"nationalId\": \"1234556667\",\n\t\"gender\": \"M\",\n\t\"email\": \"jajabenit@gmail.com\",\n\t\"password\": \"Password@10\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/customer/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"customer",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"fullName\": \"jaja\",\n\t\"nationalId\": \"1234556667\",\n\t\"gender\": \"M\",\n\t\"email\": \"jajabenit@gmail.com\",\n\t\"password\": \"Password@10\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/customer/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customer",
+								"register"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"jajabenit@gmail.com\",\n\t\"password\": \"Password@10\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/customer/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"customer",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"jajabenit@gmail.com\",\n\t\"password\": \"Password@10\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/customer/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customer",
+								"login"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Customer by Id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqYWphYmVuaXRAZ21haWwuY29tIiwiaWF0IjoxNjczMTMyNDQ4LCJleHAiOjE3MDQ2Njg0NDh9.VjdEWxFqAU5DcOvjNb9J1mCfyaeriN-ss3PsqmbHSec",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/customer/6",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"customer",
+						"6"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Customer by Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/customer/6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customer",
+								"6"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqYWphYmVuaXRAZ21haWwuY29tIiwiaWF0IjoxNjczMTMyNDQ4LCJleHAiOjE3MDQ2Njg0NDh9.VjdEWxFqAU5DcOvjNb9J1mCfyaeriN-ss3PsqmbHSec",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/customer",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Customers",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/customer",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "119"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"77-KCD+ew/05LoywcWA16jrt/QUIY4\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Jan 2023 23:50:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"email\": \"jajabenit@gmail.com\",\n            \"fullName\": \"jaja\",\n            \"nationalId\": \"1234556667\",\n            \"gender\": \"M\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Account",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqYWphYmVuaXRAZ21haWwuY29tIiwiaWF0IjoxNjczMTMyNDQ4LCJleHAiOjE3MDQ2Njg0NDh9.VjdEWxFqAU5DcOvjNb9J1mCfyaeriN-ss3PsqmbHSec",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"walletType\": \"saving\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wallet",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wallet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accounts By Customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqYWphYmVuaXRAZ21haWwuY29tIiwiaWF0IjoxNjczMTMyNDQ4LCJleHAiOjE3MDQ2Njg0NDh9.VjdEWxFqAU5DcOvjNb9J1mCfyaeriN-ss3PsqmbHSec",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wallet",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wallet"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Accounts By Customer",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/wallet",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wallet"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "417"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1a1-plEtTKZd7SnG258PlDxACRdCp/w\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Jan 2023 23:39:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"data\": [\n        {\n            \"id\": 1,\n            \"accNumber\": \"200-1-1673132486606\",\n            \"customerId\": 1,\n            \"walletType\": \"saving\",\n            \"balance\": 9900,\n            \"walletActivityLogs\": [\n                {\n                    \"transactionId\": 290002,\n                    \"action\": \"credit\",\n                    \"amount\": 10000\n                },\n                {\n                    \"transactionId\": 1,\n                    \"action\": \"debit\",\n                    \"amount\": 100\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"accNumber\": \"200-1-1673132625492\",\n            \"customerId\": 1,\n            \"walletType\": \"saving\",\n            \"balance\": 100,\n            \"walletActivityLogs\": [\n                {\n                    \"transactionId\": 1,\n                    \"action\": \"credit\",\n                    \"amount\": 100\n                }\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Balance for Testing",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqYWphYmVuaXRAZ21haWwuY29tIiwiaWF0IjoxNjczMTMyNDQ4LCJleHAiOjE3MDQ2Njg0NDh9.VjdEWxFqAU5DcOvjNb9J1mCfyaeriN-ss3PsqmbHSec",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accNumber\": \"200-1-1673132486606\",\n    \"amount\": 10000,\n    \"transactionId\": 290002\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wallet/deposit",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wallet",
+						"deposit"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add Balance for Testing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accNumber\": \"200-1-1673132486606\",\n    \"amount\": 10000,\n    \"transactionId\": 290002\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/wallet/deposit",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wallet",
+								"deposit"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Account By Acc Number",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqYWphYmVuaXRAZ21haWwuY29tIiwiaWF0IjoxNjczMTMyNDQ4LCJleHAiOjE3MDQ2Njg0NDh9.VjdEWxFqAU5DcOvjNb9J1mCfyaeriN-ss3PsqmbHSec",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/wallet/200-6-1672993748555",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wallet",
+						"200-6-1672993748555"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Account By Acc Number",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/wallet/200-6-1672993748555",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wallet",
+								"200-6-1672993748555"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "200"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c8-pFm1FYgeouEe/oe+/yKOP5iG4xE\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 06 Jan 2023 12:26:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"data\": {\n        \"id\": 5,\n        \"accNumber\": \"200-6-1672993748555\",\n        \"customerId\": 6,\n        \"walletType\": \"personal\",\n        \"balance\": 50000,\n        \"walletActivityLogs\": [\n            {\n                \"transactionId\": 290002,\n                \"action\": \"credit\",\n                \"amount\": 10000\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqYWphYmVuaXRAZ21haWwuY29tIiwiaWF0IjoxNjczMTMyNDQ4LCJleHAiOjE3MDQ2Njg0NDh9.VjdEWxFqAU5DcOvjNb9J1mCfyaeriN-ss3PsqmbHSec",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"receiverAcc\": \"200-1-1673132625492\",\n    \"senderAcc\": \"200-1-1673132486606\",\n    \"amount\": 100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/transaction",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"transaction"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Transaction",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"receiverAcc\": \"200-1-1673132625492\",\n    \"senderAcc\": \"200-1-1673132486606\",\n    \"amount\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/transaction",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Transactions By Acc Number",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJqYWphYmVuaXRAZ21haWwuY29tIiwiaWF0IjoxNjcyOTkxNTE4LCJleHAiOjE3MDQ1Mjc1MTh9.NAa6BsMRhrz4BBvcUVkF6zBuQP65HDMPGuH1yEnijaU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/transaction/200-6-1672993748555",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"transaction",
+						"200-6-1672993748555"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Transactions By Acc Number",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/transaction/200-1-1673132625492",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transaction",
+								"200-1-1673132625492"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "129"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"81-rL4ZzNLeg9LNyCjFRcax0W1BiS8\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 Jan 2023 23:39:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"data\": [\n        {\n            \"senderAcc\": \"200-1-1673132486606\",\n            \"receiverAcc\": \"200-1-1673132625492\",\n            \"amount\": 100,\n            \"status\": \"completed\"\n        }\n    ]\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost:3000",
+			"type": "string"
+		}
+	]
+}
